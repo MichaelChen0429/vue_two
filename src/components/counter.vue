@@ -25,11 +25,13 @@ export default {
       if (this.counter > 0) {
         this.counter = this.counter - 1
       }
+      this.$emit('minus', this.counter)
     },
     plus: function () {
       if (this.counter < 10) {
         this.counter = this.counter + 1
       }
+      this.$emit('plus', this.counter)
     }
   }
 }

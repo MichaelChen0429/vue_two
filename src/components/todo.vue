@@ -27,10 +27,13 @@ export default {
           todo: this.newadd
         }
       )
+      this.$emit('addlist', this.newadd)
       this.newadd = ''
+      // this.$emit('addlist', this.todo)
     },
     delete1: function (index) {
       this.todolist.splice(index, 1)
+      this.$emit('delete1', this.todolist)
     }
   }
 }

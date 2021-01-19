@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import counter from '../views/counter.vue'
 import todo from '../views/todo.vue'
+import todoCounter from '../views/todoCounter.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/todo',
     name: 'todo',
     component: todo
+  },
+  {
+    path: '/todoCounter',
+    name: 'todoCounter',
+    component: todoCounter
   }
 ]
 
