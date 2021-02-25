@@ -43,8 +43,8 @@ export default {
     addlist (text) {
       this.message = '已新增一則' + text + '待辦'
     },
-    delete1 () {
-      this.message = '已刪除一則待辦'
+    delete1 (text) {
+      this.message = '已刪除一則' + text + '待辦'
     }
   }
 }

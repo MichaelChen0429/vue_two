@@ -32,8 +32,11 @@ export default {
       // this.$emit('addlist', this.todo)
     },
     delete1: function (index) {
+      var iterator = this.todolist.slice(index)
+      var now = iterator.values()
+      // console.log(now.next().value.todo)
+      this.$emit('delete1', now.next().value.todo)
       this.todolist.splice(index, 1)
-      this.$emit('delete1', this.todolist)
     }
   }
 }

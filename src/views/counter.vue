@@ -9,52 +9,63 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      counter: []
+      counter: null
     }
+  },
+  mounted () {
+    axios
+      .get('http://127.0.0.1:8000/api/counter')
+      .then(response => (this.counter = response.data.counter[0].number_now))
+    // axios.put('http://127.0.0.1:8000/api/counter/10', this.counter)
   },
   computed: {
     is_disabled () {
       return this.counter <= 0 || this.counter >= 10
     }
   },
-  created: function () {
-    this.getData()
-  },
+  // created: function () {
+  //   this.getData()
+  // },
   methods: {
     minus: function () {
       if (this.counter > 0) {
         this.counter = this.counter - 1
       }
+      axios({
+        method: 'patch',
+        url: 'http://127.0.0.1:8000/api/counter/10',
+        data: {
+          number_now: this.counter
+        }
+      })
     },
     plus: function () {
       if (this.counter < 10) {
         this.counter = this.counter + 1
       }
-    },
-    getData: function () {
-      var apiURL = '127.0.0.1:8000/api/counter'
-      var xhr = new XMLHttpRequest()
-      // var self = this
-      xhr.open('GET', apiURL)
-      console.log(xhr.open('GET', apiURL))
-      // xhr.onload = function () {
-      //   self.counter = xhr.responseText
-      // }
-      xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-            // self.counter = this.responseText
-            console.log(this.responseText)
-          } else {
-            console.log(this.status, this.statusText)
-          }
+      axios({
+        method: 'patch',
+        url: 'http://127.0.0.1:8000/api/counter/10',
+        data: {
+          number_now: this.counter
         }
-      }
-      xhr.send()
+      })
     }
+    // getData: function () {
+    //   var apiURL = 'http://127.0.0.1:8000/api/counter'
+    //   var xhr = new XMLHttpRequest()
+    //   var self = this
+    //   xhr.open('GET', apiURL)
+    //   console.log(xhr.open('GET', apiURL))
+    //   xhr.onload = function () {
+    //     self.counter = xhr.responseText
+    //   }
+    //   xhr.send()
+    // }
   }
 }
 </script>
